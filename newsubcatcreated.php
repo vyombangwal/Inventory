@@ -1,12 +1,12 @@
 <?php
 include "navbar.php";
+session_start();
 $catid=$_POST['catid'];
 $subname=$_POST['subcatname'];
-$subquan=$_POST['subcatquan'];
-$des=$_POST['des'];
 
 
-$sql="INSERT INTO subcategory(name,description,quantity,catid) VALUES('$subname','$des','$subquan','$catid')";
+
+$sql="INSERT INTO subcategory(name,catid) VALUES('$subname','$catid')";
 $result=mysqli_query($conn,$sql);
 if($result){
 	echo "inserted succesfully";?>

@@ -9,8 +9,8 @@ $conn = new mysqli($servername, $username, $password,$db);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$catname=$_POST['datapost'];	
-$sql="SELECT subcat FROM $catname";
+$catid=$_POST['datapost'];	
+$sql="SELECT name FROM subcategory WHERE catid='$catid' AND user='admin'";
 $result=mysqli_query($conn,$sql);
 ?>
 <option value="" disabled selected>Sub-category</option>

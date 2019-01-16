@@ -28,8 +28,7 @@ include "navbar.php";
 	}
 	?>
 	ENTER NAME:<input type="text" name="subcatname" required><br>
-	ENTER QUAN:<input type="text" name="subcatquan" required><br>
-	ENTER Description:<input type="text" name="des" required><br>
+	
 	<input type="submit">	
 	</form>
 </body>

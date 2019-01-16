@@ -26,7 +26,7 @@ background: url(bg.jpg) no-repeat center center/cover;
 </head>
 <body>
 	<?php
-	include 'navbar.php';
+	include 'usernav.php';
 	
 	?>
     <div class="" style="padding-top:;" >
@@ -96,7 +96,7 @@ background: url(bg.jpg) no-repeat center center/cover;
 
 <div class="container">
  <a class="btn btn-outline-light btn-lg" id="1" style=" " href="" title="view">View</a>
-  <a class="btn btn-outline-light btn-lg" id="3" style="margin-left: 1em;" href="" title="Delete">Delete</a>
+ <a class="btn btn-outline-light btn-lg" id="2" style="margin-left: 1em;" href="" title="import">Import/Export</a> <a class="btn btn-outline-light btn-lg" id="3" style="margin-left: 1em;" href="" title="Delete">Delete</a>
                
 </div></div>
 </form>
