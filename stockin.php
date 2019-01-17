@@ -10,6 +10,7 @@ $subcat=$_GET['subcat'];
 $sql2="SELECT * FROM subcategory WHERE catid='$catid' AND name='$subcat' AND user='$user'";
 $result2=mysqli_query($conn,$sql2);
 $count=mysqli_num_rows($result2);
+$row2=mysqli_fetch_row($result2);
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,7 @@ $count=mysqli_num_rows($result2);
 		<div class="col-md-6">
 			<div class="card">
   <div class="card-header">
-    <strong>Stock In</strong>
+    <strong>StockIn</strong>
   </div>
   <div class="card-body">
   	<div class="row">
@@ -32,22 +33,22 @@ $count=mysqli_num_rows($result2);
     </div>
     <div class="col-sm-6">
     	<h5 class="card-title">Available: <span style="font-weight: 10;font-family: TIMES"><?php
-    	if($count>0) echo $row[3];
+    	if($count>0) echo $row2[3];
     	else 
     	echo 0; ?></span></h5>
     </div>
 </div>
-    <p class="card-text"><form method="POST">
+    <p class="card-text"><form method="POST" action="insertstock.php?catid=<?php echo $catid?>&subcat=<?php echo $subcat?>&count=<?php echo $count?>&sign=1">
   <div class="form-group">
-    <label>Stock In</label>
-    <input type="text" class="form-control" name="quan" id="quan" placeholder="Enter Quantity" onchange="myfun2(this.value)">
+    <label>StockIn</label>
+    <input type="text" class="form-control" name="quan" id="quan" placeholder="Enter Quantity" required onchange="myfun2(this.value)">
     
   </div>
   <div class="row">
   	<div class="col-sm-6">
   <div class="form-group">
     <label>UnitCost</label>
-    <input type="text" class="form-control" name="unit" id="cost" placeholder="Cost per unit" onchange="myfun(this.value)">
+    <input type="text" class="form-control" name="unit" id="cost" placeholder="Cost per unit" required onchange="myfun(this.value)">
   </div>
 </div>
 <div class="col-sm-6">
@@ -67,7 +68,7 @@ $count=mysqli_num_rows($result2);
 		<div class="col-md-6">
 			<div class="card">
   <div class="card-header">
-    <strong>Stock Out</strong>
+    <strong>StockOut</strong>
   </div>
   <div class="card-body">
   	<div class="row">
@@ -77,22 +78,24 @@ $count=mysqli_num_rows($result2);
     </div>
     <div class="col-sm-6">
     	<h5 class="card-title">Available: <span style="font-weight: 10;font-family: TIMES"><?php
-    	if($count>0) echo $row[3];
+    	if($count>0) echo $row2[3];
     	else 
     	echo 0; ?></span></h5>
     </div>
 </div>
-    <p class="card-text"><form method="POST">
+    <p class="card-text">
+      <form method="POST" action="insertstock.php?catid=<?php echo $catid?>&subcat=<?php echo $subcat?>&count=<?php echo $count?>&sign=2">
   <div class="form-group">
-    <label>Stock Out</label>
-    <input type="text" class="form-control" name="quan" id="quan2" placeholder="Enter Quantity" onchange="myfun4(this.value)">
-    
+    <label>StockOut</label>
+    <input type="text" class="form-control" name="quan" id="quan2" placeholder="Enter Quantity" required onchange="myfun3(this.value)">
+    <div id ="errors">
+      </div>
   </div>
   <div class="row">
   	<div class="col-sm-6">
   <div class="form-group">
     <label>UnitCost</label>
-    <input type="text" class="form-control" name="unit" id="cost2" placeholder="Cost per unit" onchange="myfun3(this.value)">
+    <input type="text" class="form-control" name="unit" id="cost2" placeholder="Cost per unit" onchange="myfun4(this.value)" required>
   </div>
 </div>
 <div class="col-sm-6">
@@ -103,52 +106,60 @@ $count=mysqli_num_rows($result2);
   </div>
 </div>
 </div>  
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" id="submit" class="btn btn-primary">Submit</button>
 </form></p>
     
   </div>
-</div></div>
+</div>
+		</div>
+</div>
 <script type="text/javascript">
 	function myfun(cost){
 		var quan=document.getElementById('quan').value;
 		if(quan){
 			var total= cost*quan;
 		}
-		else{
-			var total=0;
-		}
+		else
+			total=0;
 		document.getElementById('total').setAttribute("value",total);
 	}
-		function myfun2(quan){
+	function myfun2(quan){
 		var cost=document.getElementById('cost').value;
 		if(cost){
 			var total= cost*quan;
 		}
-		else{
-			var total=0;
-		}
+		else
+			total=0;
 		document.getElementById('total').setAttribute("value",total);
 	}
-	function myfun3(cost){
-		var quan=document.getElementById('quan2').value;
-		if(quan){
-			var total= cost*quan;
+	function myfun4(cost2){
+		var quan2=document.getElementById('quan2').value;
+		if(quan2){
+			var total2= cost2*quan2;
 		}
-		else{
-			var total=0;
-		}
-		document.getElementById('total2').setAttribute("value",total);
+		else
+			total2=0;
+		document.getElementById('total2').setAttribute("value",total2);
 	}
-		function myfun4(quan){
-		var cost=document.getElementById('cost2').value;
-		if(cost){
-			var total= cost*quan;
+	function myfun3(quan2){
+    if(quan2><?php echo $row2[3] ?>)
+    {
+       document.getElementById('errors').innerHTML="*LIMIT CROSSED*";
+       document.getElementById('submit').disabled=true;
+
+    }
+    else{
+		var cost2=document.getElementById('cost2').value;
+    document.getElementById('errors').innerHTML="";
+document.getElementById('submit').disabled=false;
+
+		if(cost2){
+			var total2= cost2*quan2;
 		}
-		else{
-			var total=0;
-		}
-		document.getElementById('total2').setAttribute("value",total);
-	}
+		else
+			total2=0;
+		document.getElementById('total2').setAttribute("value",total2);
+	}}
 </script>
 </body>
 </html>
