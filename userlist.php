@@ -41,7 +41,7 @@ $(document).ready(function(){
       <input class="form-control-sm " id="myInput" type="search" placeholder="Search in this table" aria-label="Search">
       
     </form><br>
-<table class="table table-hover">
+<table class="table table-hover border">
   <thead>
     <tr>
       <th scope="col">catid</th>
@@ -55,7 +55,11 @@ $(document).ready(function(){
     	$user=$_SESSION["user"];
     if(mysqli_num_rows($result)>0){
     while ($row = mysqli_fetch_row($result))
-    {?>
+    {  
+      $sql2="SELECT name FROM subcategory WHERE catid='$row[0]' AND user='$user'";
+             $result1=mysqli_query($conn,$sql2);
+             if(mysqli_num_rows($result1)>0){
+      ?>
     <tr>
     	
       <th scope="row"><?php echo $row[0]?></th>
@@ -64,9 +68,7 @@ $(document).ready(function(){
       <td class="" >
       	<ul >
       		<?php 
-             $sql2="SELECT name FROM subcategory WHERE catid='$row[0]' AND user='$user'";
-             $result1=mysqli_query($conn,$sql2);
-             if(mysqli_num_rows($result1)>0){
+            
     while ($row1 = mysqli_fetch_row($result1))
     {
 
@@ -74,12 +76,12 @@ $(document).ready(function(){
       		 <li><?php echo $row1[0] ?></li>
       		 <?php 
       		}
-      	} ?>
+      	 ?>
       	</ul>
       </td>
 
     </tr>
-  <?php }
+  <?php } }
 }  ?>
   </tbody>
 </table>

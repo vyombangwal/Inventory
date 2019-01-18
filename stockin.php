@@ -54,7 +54,7 @@ $row2=mysqli_fetch_row($result2);
 <div class="col-sm-6">
   <div class="form-group">
     <label>TotalCost</label>
-    <input type="text" class="form-control" id="total" disabled value="" >
+    <input type="text" class="form-control" id="total" name="total" disabled value="" >
     
   </div>
 </div>
@@ -77,7 +77,7 @@ $row2=mysqli_fetch_row($result2);
     <h5 class="card-title">SubCategory: <span style="font-weight: 10;font-family: TIMES"><?php echo ucfirst($subcat); ?></span></h5>
     </div>
     <div class="col-sm-6">
-    	<h5 class="card-title">Available: <span style="font-weight: 10;font-family: TIMES"><?php
+    	<h5 class="card-title">Available: <span id="avail" style="font-weight: 10;font-family: TIMES"><?php
     	if($count>0) echo $row2[3];
     	else 
     	echo 0; ?></span></h5>
@@ -101,7 +101,7 @@ $row2=mysqli_fetch_row($result2);
 <div class="col-sm-6">
   <div class="form-group">
     <label>TotalCost</label>
-    <input type="text" class="form-control" id="total2" disabled value="" >
+    <input type="text" class="form-control" id="total2" name="total2" disabled value="" >
     
   </div>
 </div>
@@ -142,7 +142,8 @@ $row2=mysqli_fetch_row($result2);
 		document.getElementById('total2').setAttribute("value",total2);
 	}
 	function myfun3(quan2){
-    if(quan2><?php echo $row2[3] ?>)
+ var avail=document.getElementById('avail').innerText;
+    if(quan2>avail)
     {
        document.getElementById('errors').innerHTML="*LIMIT CROSSED*";
        document.getElementById('submit').disabled=true;
