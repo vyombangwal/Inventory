@@ -16,6 +16,8 @@ $quan=$_POST['quan'];
 $user=$_SESSION['user'];
 $sign=$_GET['sign'];
 $unit=$_POST['unit'];
+$supp=$_POST['supp'];
+$buy=$_POST['buy'];
 $total=$unit*$quan;
 
 
@@ -29,7 +31,7 @@ else{
 	$sql="INSERT INTO subcategory(catid,name,quantity,user) VALUES('$catid','$subcat','$quan','$user')";
 	$result=mysqli_query($conn,$sql);
 }
-$sql2="INSERT INTO stockin(catid,subcat,unitcost,totalcost) VALUES('$catid','$subcat','$unit','$total')";
+$sql2="INSERT INTO stockin(catid,subcat,unitcost,totalcost,supplier) VALUES('$catid','$subcat','$unit','$total','$supp')";
 $result2=mysqli_query($conn,$sql2);
 }
 else{
@@ -38,7 +40,7 @@ else{
 $sql="UPDATE subcategory SET quantity= quantity-'$quan' WHERE  catid='$catid' AND name='$subcat' AND user='$user'";
 $result=mysqli_query($conn,$sql);
 
-$sql2="INSERT INTO stockout(catid,subcat,unitcost,totalcost) VALUES('$catid','$subcat','$unit','$total')";
+$sql2="INSERT INTO stockout(catid,subcat,unitcost,totalcost,buyer) VALUES('$catid','$subcat','$unit','$total','$buy')";
 $result2=mysqli_query($conn,$sql2);
 
 }

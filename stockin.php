@@ -39,11 +39,19 @@ $row2=mysqli_fetch_row($result2);
     </div>
 </div>
     <p class="card-text"><form method="POST" action="insertstock.php?catid=<?php echo $catid?>&subcat=<?php echo $subcat?>&count=<?php echo $count?>&sign=1">
+      <div class="row">
+      <div class="col-sm-6">
   <div class="form-group">
     <label>StockIn</label>
     <input type="text" class="form-control" name="quan" id="quan" placeholder="Enter Quantity" required onchange="myfun2(this.value)">
     
+  </div></div>
+  <div class="col-sm-6">
+  <div class="form-group">
+    <label>Supplier</label>
+    <input type="text" class="form-control" name="supp" id="" placeholder=" Supplier's name" required>
   </div>
+</div></div>
   <div class="row">
   	<div class="col-sm-6">
   <div class="form-group">
@@ -81,16 +89,26 @@ $row2=mysqli_fetch_row($result2);
     	if($count>0) echo $row2[3];
     	else 
     	echo 0; ?></span></h5>
+
     </div>
 </div>
     <p class="card-text">
       <form method="POST" action="insertstock.php?catid=<?php echo $catid?>&subcat=<?php echo $subcat?>&count=<?php echo $count?>&sign=2">
+  <div class="row">
+    <div class="col-sm-6">
   <div class="form-group">
     <label>StockOut</label>
     <input type="text" class="form-control" name="quan" id="quan2" placeholder="Enter Quantity" required onchange="myfun3(this.value)">
     <div id ="errors">
       </div>
+  </div></div>
+<div class="col-sm-6">
+  <div class="form-group">
+    <label>Buyer</label>
+    <input type="text" class="form-control" name="buy" id="" placeholder="Buyer's name" required>
   </div>
+</div>
+</div>
   <div class="row">
   	<div class="col-sm-6">
   <div class="form-group">
