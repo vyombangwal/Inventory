@@ -103,7 +103,7 @@ $result4=mysqli_query($conn,$sql4);
         <td><?php echo $catid;?></td>
         <td><?php echo $row1[0];?></td>
         <td><?php echo $subname;?></td>
-         <td><?php if($row4[2]==0){echo "";} else echo $row4[3]/$row4[2];?></td>
+         <td><?php if($row2[2]==0){echo "";} else echo $row2[3]/$row2[2];?></td>
         <td><?php echo $row2[2];?></td>
         <td><?php echo $row2[3];?></td>
         <td><?php echo $row2[4];?></td>
