@@ -12,12 +12,25 @@ if ($conn->connect_error) {
 }
 $catid=$_POST['catid'];	
 $subname=$_POST['datapost'];
+$user=$_SESSION["user"];
+$sql1="SELECT name FROM category WHERE catid='$catid'";
+
+$result1=mysqli_query($conn,$sql1);
+
+$sql2="SELECT quantity FROM subcategory WHERE catid='$catid' AND name='$subname' AND user='$user'";
+$result2=mysqli_query($conn,$sql2);
+$sql3="SELECT unitcost FROM stockin WHERE catid='$catid' AND subcat='$subname' AND user='$user'";
+$result3=mysqli_query($conn,$sql3);
+
+
+  $sql4="SELECT name,quantity FROM subcategory WHERE catid='$catid' AND user='$user'";
+$result4=mysqli_query($conn,$sql4);
 $sql="DELETE FROM subcategory WHERE catid='$catid' AND user='$user' AND name='$subname'";
 $result=mysqli_query($conn,$sql);
 ?>
 
 
-<tbody id="myTable""><tr>
+<tr>
     <?php
       if(mysqli_num_rows($result2)==0)
         { if (mysqli_num_rows($result1)>0){
@@ -37,7 +50,7 @@ $result5=mysqli_query($conn,$sql5);
 
     </tr>
     <?php
-}a
+}
 }}
 } else{  if(mysqli_num_rows($result2)>0){
          if(mysqli_num_rows($result1)>0)
@@ -59,5 +72,5 @@ $result5=mysqli_query($conn,$sql5);
 }}}}
 ?>
 </tr>
-</tbody>
+
 
