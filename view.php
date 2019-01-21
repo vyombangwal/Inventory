@@ -55,9 +55,11 @@ $(document).ready(function(){
       <th scope="col">Category</th>
       <th scope="col">Subcategory</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Unitcost</th></tr>
+      <th scope="col">Unitcost</th>
+     <th scope="col">Delete</th>
+   </tr>
     </thead>
-    </tr><tbody id="myTable""><tr>
+    <tbody id="myTable""><tr>
     <?php
       if(mysqli_num_rows($result2)==0)
         { if (mysqli_num_rows($result1)>0){
