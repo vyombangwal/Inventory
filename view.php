@@ -54,8 +54,8 @@ $(document).ready(function(){
       <th scope="col">Catid</th>
       <th scope="col">Category</th>
       <th scope="col">Subcategory</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Unitcost</th>
+      <th scope="col">Qty in Stock</th>
+      
      <th scope="col">Delete</th>
    </tr>
     </thead>
@@ -71,11 +71,11 @@ $(document).ready(function(){
 $result5=mysqli_query($conn,$sql5);
  $row5=mysqli_fetch_row($result5);
         ?>
-        <td><?php echo $catid;?></td>
+        <td id="catid"><?php echo $catid;?></td>
         <td><?php echo $row1[0];?></td>
-        <td><?php echo $row4[0];?></td>
+        <td id="subcat"><?php echo $row4[0];?><button class="btn btn-outline" onclick="myfun()" style="padding-top:1px;"><i class="fas fa-trash-alt" ></i></button></td>
         <td><?php echo $row4[1];?></td>
-        <td><?php echo $row5[0];?></td>
+        
 
     </tr>
     <?php
@@ -89,11 +89,11 @@ $result5=mysqli_query($conn,$sql5);
             $row2=mysqli_fetch_row($result2);
             $row3=mysqli_fetch_row($result3);
            ?>
-        <td><?php echo $catid;?></td>
+        <td id="catid"><?php echo $catid;?></td>
         <td><?php echo $row1[0];?></td>
-        <td><?php echo $subname;?></td>
+        <td id="subcat"><?php echo $subname;?><button onclick="myfun()" class="btn btn-outline " style="padding-top:1px;"><i class="fas fa-trash-alt" ></i></button></td>
         <td><?php echo $row2[0];?></td>
-         <td><?php echo $row3[0];?></td>
+         
         
 
     </tr>
@@ -104,5 +104,24 @@ $result5=mysqli_query($conn,$sql5);
 </tbody>
 </table>
 </div>
+<script type="text/javascript">
+  function myfun(){
+    if(confirm("Are you sure you want to Delete"))
+    {
+var subcat=document.getElementbyId("subcat").value;
+    var catid=document.getElementbyId("catid").value;
+    
+      $.ajax({
+      url: 'delete.php',
+      type:'POST',
+      data:{datapost : subcat, catid : catid},
+      success: function(result){
+          $('#myTable').html(result);
+      }
+      
+    });
+    }
+  }
+</script>
 	</body>
 	</html>

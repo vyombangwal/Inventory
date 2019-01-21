@@ -160,7 +160,7 @@ $row2=mysqli_fetch_row($result2);
 		document.getElementById('total2').setAttribute("value",total2);
 	}
 	function myfun3(quan2){
- var avail=document.getElementById('avail').innerText;
+ var avail=parseInt(document.getElementById('avail').innerText);
     if(quan2>avail)
     {
        document.getElementById('errors').innerHTML="*LIMIT CROSSED*";
