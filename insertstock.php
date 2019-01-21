@@ -31,7 +31,7 @@ else{
 	$sql="INSERT INTO subcategory(catid,name,quantity,user) VALUES('$catid','$subcat','$quan','$user')";
 	$result=mysqli_query($conn,$sql);
 }
-$sql2="INSERT INTO stockin(catid,subcat,unitcost,totalcost,supplier) VALUES('$catid','$subcat','$unit','$total','$supp')";
+$sql2="INSERT INTO stockin(catid,subcat,unitcost,totalcost,supplier,user) VALUES('$catid','$subcat','$unit','$total','$supp','$user')";
 $result2=mysqli_query($conn,$sql2);
 }
 else{
@@ -40,7 +40,7 @@ else{
 $sql="UPDATE subcategory SET quantity= quantity-'$quan' WHERE  catid='$catid' AND name='$subcat' AND user='$user'";
 $result=mysqli_query($conn,$sql);
 
-$sql2="INSERT INTO stockout(catid,subcat,unitcost,totalcost,buyer) VALUES('$catid','$subcat','$unit','$total','$buy')";
+$sql2="INSERT INTO stockout(catid,subcat,unitcost,totalcost,buyer,user) VALUES('$catid','$subcat','$unit','$total','$buy','$user')";
 $result2=mysqli_query($conn,$sql2);
 
 }
