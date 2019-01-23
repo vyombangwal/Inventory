@@ -84,10 +84,7 @@ background: url(bg.jpg) no-repeat center center/cover;
 	function myfun2(){
 		var catvalue=document.getElementById('sell').value;
 		var subcatvalue=document.getElementById('sell2').value;
-		var url = "view.php?cat="+catvalue+"&subcat="+subcatvalue;
-		document.getElementById("1").href=url;
-		var url = "import.php?cat="+catvalue+"&subcat="+subcatvalue;
-		document.getElementById("2").href=url;
+		
 		var url = "deleted.php?cat="+catvalue+"&subcat="+subcatvalue;
 		document.getElementById("3").href=url;
 	}
@@ -95,8 +92,8 @@ background: url(bg.jpg) no-repeat center center/cover;
 </script>
 
 <div class="container">
- <a class="btn btn-outline-light btn-lg" id="1" style=" " href="" title="view">View</a>
-  <a class="btn btn-outline-light btn-lg" id="3" style="margin-left: 1em;" href="" title="Delete">Delete</a>
+ 
+  <a class="btn btn-outline-light btn-lg" id="3" style="" href="" title="Delete">Delete</a>
                
 </div></div>
 </form>

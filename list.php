@@ -63,7 +63,7 @@ $(document).ready(function(){
       <td class="" >
       	<ul >
       		<?php 
-             $sql2="SELECT name FROM subcategory WHERE catid='$row[0]'";
+             $sql2="SELECT name FROM subcategory WHERE catid='$row[0]' AND user='admin'";
              $result1=mysqli_query($conn,$sql2);
              if(mysqli_num_rows($result1)>0){
     while ($row1 = mysqli_fetch_row($result1))
