@@ -18,7 +18,11 @@ $result3=mysqli_query($conn,$sql3);
 ?>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
+          
+             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
+           <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
+      
 <script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
@@ -41,20 +45,36 @@ $(document).ready(function(){
 	<title>
 	</title>
 	<body>
+
 		<div class="container mt-5">
       
         <div class="row">
-        <div class="col-sm-6"> 
+        <div class="col-sm-3"> 
      <h1 style="font-family:Century">Stock In Transactions</h1>
-  
-</div><div class="col-sm-6">
-  <a href="transout.php?cat=<?php echo $catid ?> &subcat=<?php echo $subname ?>"><button type="button" class="btn btn-success" style="float: right;" title="click to view stock out">Stock Out</button></a>
-</div>
-		<form class="form-inline my-2 my-lg-0">
-      <input class="form-control-sm " id="myInput" type="search" placeholder="Search in this table" aria-label="Search">
+     <form class="form-inline my-2 my-lg-0">
+      <div class="input-group form-group">
+            
+            <input class="form-control-sm " id="myInput" type="search" placeholder="Search in this table" aria-label="Search">
+     
+            
+          </div>
       
-    </form><br>
-			<table class="table table-hover border">
+    </form>
+   </div> <div class="col-sm-3">
+                     <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date" />  
+                
+                
+                     <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" />  
+                
+                
+                     <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info" />  
+                
+</div><div class="col-sm-6">
+  <a href="transout.php?cat=<?php echo $catid ?> &subcat=<?php echo $subname ?>"><button type="button" class="btn btn-success" style="float: right;" title="click to view stock out">Stock Out</button></a><br><br>
+<button type="button" onclick="down()" class="btn btn-success" style="float: right;" title="click to view stock out">download pdf</button>
+</div>
+		<br>
+			<table class="table table-hover border mt-4" style="" >
         <thead>
    <tr>
       <th scope="col">Catid</th>
@@ -83,9 +103,9 @@ $(document).ready(function(){
 
  
         ?>
-        <td><?php echo $catid;?></td>
+        <td id="catid"><?php echo $catid;?></td>
         <td><?php echo $row1[0];?></td>
-        <td><?php echo $row3[0];?></td>
+        <td id="subcat"><?php echo $row3[0];?></td>
          <td><?php if($row4[2]==0){echo "";} else echo $row4[3]/$row4[2];?></td>
         <td><?php echo $row4[2];?></td>
         <td><?php echo $row4[3];?></td>
@@ -104,9 +124,9 @@ $(document).ready(function(){
             while($row2=mysqli_fetch_row($result2)){
            
            ?>
-        <td><?php echo $catid;?></td>
-        <td><?php echo $row1[0];?></td>
-        <td><?php echo $subname;?></td>
+        <td id="catid"><?php echo $catid;?></td>
+        <td ><?php echo $row1[0];?></td>
+        <td id="subcat"><?php echo $subname;?></td>
         <td><?php if($row2[2]==0){echo "";} else echo $row2[3]/$row2[2];?></td>
         <td><?php echo $row2[2];?></td>
         <td><?php echo $row2[3];?></td>
@@ -122,5 +142,42 @@ $(document).ready(function(){
 </tbody>
 </table>
 </div>
+<script>  
+      $(document).ready(function(){  
+           $.datepicker.setDefaults({  
+                dateFormat: 'yy-mm-dd'   
+           });  
+           $(function(){  
+                $("#from_date").datepicker();  
+                $("#to_date").datepicker();  
+           });  
+           $('#filter').click(function(){  
+                var from_date = $('#from_date').val();  
+                var to_date = $('#to_date').val();  
+                if(from_date != '' && to_date != '')  
+                {   var subcat=document.getElementById("subcat").innerText;
+    var catid=document.getElementById("catid").innerText;
+
+                     $.ajax({  
+                          url:"filter.php",  
+                          method:"POST",  
+                          data:{from_date:from_date, to_date:to_date,catid:catid, subcat:subcat},  
+                          success:function(data)  
+                          {  
+                               $('#myTable').html(data);  
+                          }  
+                     });  
+                }  
+                else  
+                {  
+                     alert("Please Select Date");  
+                }  
+           });  
+      }); 
+      function down() {
+         window.print();
+       } 
+ </script>
+
 	</body>
 	</html>

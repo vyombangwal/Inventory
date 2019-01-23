@@ -7,6 +7,7 @@ $sql="SELECT name FROM category WHERE catid='$catid'";
 $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_row($result);
 $subcat=$_GET['subcat'];
+
 $sql2="SELECT * FROM subcategory WHERE catid='$catid' AND name='$subcat' AND user='$user'";
 $result2=mysqli_query($conn,$sql2);
 $count=mysqli_num_rows($result2);
