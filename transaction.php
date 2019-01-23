@@ -5,20 +5,16 @@ $catid=$_GET['cat'];
 $subname= $_GET['subcat'];
 $user=$_SESSION["user"];
 $sql1="SELECT name FROM category WHERE catid='$catid'";
-
 $result1=mysqli_query($conn,$sql1);
-
 $sql2="SELECT * FROM stockin WHERE catid='$catid' AND subcat='$subname' AND user='$user'";
 $result2=mysqli_query($conn,$sql2);
-
 $sql3="SELECT name FROM subcategory WHERE catid='$catid' AND user='$user'";
 $result3=mysqli_query($conn,$sql3);
  
-
 ?>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
           
              <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
            <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
@@ -41,12 +37,12 @@ $(document).ready(function(){
   });
 });
 </script>
-	</head>
-	<title>
-	</title>
-	<body>
+  </head>
+  <title>
+  </title>
+  <body>
 
-		<div class="container mt-5">
+    <div class="container mt-5">
       
         <div class="row">
         <div class="col-sm-3"> 
@@ -73,8 +69,8 @@ $(document).ready(function(){
   <a href="transout.php?cat=<?php echo $catid ?> &subcat=<?php echo $subname ?>"><button type="button" class="btn btn-success" style="float: right;" title="click to view stock out">Stock Out</button></a><br><br>
 <button type="button" onclick="down()" class="btn btn-success" style="float: right;" title="click to view stock out">download pdf</button>
 </div>
-		<br>
-			<table class="table table-hover border mt-4" style="" >
+    <br>
+      <table class="table table-hover border mt-4" style="" >
         <thead>
    <tr>
       <th scope="col">Catid</th>
@@ -91,27 +87,23 @@ $(document).ready(function(){
     <?php
       if(mysqli_num_rows($result2)==0)
         { if (mysqli_num_rows($result1)>0){
-
           while ($row1=mysqli_fetch_array($result1)) 
           { while( $row3=mysqli_fetch_array($result3)){
-
            $sql4="SELECT * FROM stockin WHERE catid='$catid' AND user='$user' AND subcat='$row3[0]'";
            $result4=mysqli_query($conn,$sql4);
           while ($row4=mysqli_fetch_row($result4)) {
             
           
-
  
         ?>
         <td id="catid"><?php echo $catid;?></td>
         <td><?php echo $row1[0];?></td>
-        <td id="subcat"><?php echo $row3[0];?></td>
+        <td><?php echo $row3[0];?></td>
          <td><?php if($row4[2]==0){echo "";} else echo $row4[3]/$row4[2];?></td>
         <td><?php echo $row4[2];?></td>
         <td><?php echo $row4[3];?></td>
         <td><?php echo $row4[4];?></td>
         <td><?php echo $row4[5];?></td>
-
     </tr>
     <?php
 }
@@ -133,7 +125,6 @@ $(document).ready(function(){
         <td><?php echo $row2[4];?></td>
         <td><?php echo $row2[5];?></td>
         
-
     </tr>
     <?php
 }}}}}
@@ -155,9 +146,11 @@ $(document).ready(function(){
                 var from_date = $('#from_date').val();  
                 var to_date = $('#to_date').val();  
                 if(from_date != '' && to_date != '')  
-                {   var subcat=document.getElementById("subcat").innerText;
+                {   
     var catid=document.getElementById("catid").innerText;
-
+                  
+                  if(subcat){
+                      var subcat=document.getElementById("subcat").innerText;
                      $.ajax({  
                           url:"filter.php",  
                           method:"POST",  
@@ -167,6 +160,20 @@ $(document).ready(function(){
                                $('#myTable').html(data);  
                           }  
                      });  
+                }
+                else
+                {var subcat=null;
+                 $.ajax({  
+                  
+                          url:"filter.php",  
+                          method:"POST",  
+                          data:{from_date:from_date, to_date:to_date,catid:catid, subcat:subcat},  
+                          success:function(data)  
+                          {  
+                               $('#myTable').html(data);  
+                          }  
+                     }); 
+                }
                 }  
                 else  
                 {  
@@ -178,6 +185,5 @@ $(document).ready(function(){
          window.print();
        } 
  </script>
-
-	</body>
-	</html>
+  </body>
+  </html>
