@@ -35,7 +35,7 @@ include "navbar.php";
   	<div class="col-sm-6">
   <div class="form-group">
     <label>Category</label>
-    <input type="text" class="form-control" name="unit" id="cost" placeholder="Enter Category name" required >
+    <input type="text" class="form-control" name="name" id="cost" placeholder="Enter Category name" required >
   </div>
 </div>
 
@@ -82,7 +82,7 @@ include "navbar.php";
 	  	<div class="col-sm-6">
   <div class="form-group">
     <label>Subcategory</label>
-    <input type="text" class="form-control" name="unit" id="cost" placeholder="Enter Subcategory name" required >
+    <input type="text" class="form-control" name="subcatname" id="cost" placeholder="Enter Subcategory name" required >
   </div>
 </div>
 
