@@ -63,7 +63,7 @@ background: url(bg.jpg) no-repeat center center/cover;
   <div class="form-group" style="width:40%;">
   <label for="sel1" style="font-family:bold; color: white;">Select subcategory:</label>
 
-  <select class="form-control" id="sell2" name="Subcategory" onchange="myfun2()">
+  <select class="form-control" id="sell2" name="Subcategory" onchange="">
   	 <option value="" disabled selected>Sub-category</option>
     
   </select>	
@@ -79,25 +79,30 @@ background: url(bg.jpg) no-repeat center center/cover;
 			}
 			
 		});
-	myfun2();
+	
 	}
-	function myfun2(){
-		var catvalue=document.getElementById('sell').value;
-		var subcatvalue=document.getElementById('sell2').value;
-		
-		var url = "deleted.php?cat="+catvalue+"&subcat="+subcatvalue;
-		document.getElementById("3").href=url;
-	}
-
+	
 </script>
 
 <div class="container">
  
-  <a class="btn btn-outline-light btn-lg" id="3" style="" href="" title="Delete">Delete</a>
+  <a class="btn btn-outline-light btn-lg" id="3" style="" onclick="myfun2()" href="#" title="Delete">Delete</a>
                
 </div></div>
 </form>
     	</div>
     </div>
+    <script type="text/javascript">
+    	function myfun2(){
+    		if(confirm("Are you sure you want to delete")){
+		var catvalue=document.getElementById('sell').value;
+		var subcatvalue=document.getElementById('sell2').value;
+		
+		var url = "deleted.php?cat="+catvalue+"&subcat="+subcatvalue;
+		document.getElementById("3").href=url;
+}
+	}
+
+    </script>
 </body>
 </html>
