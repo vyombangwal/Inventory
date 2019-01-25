@@ -33,7 +33,7 @@ $row2=mysqli_fetch_row($result2);
     <h5 class="card-title">SubCategory: <span style="font-weight: 10;font-family: TIMES"><?php echo ucfirst($subcat); ?></span></h5>
     </div>
     <div class="col-sm-6">
-    	<h5 class="card-title">Available: <span style="font-weight: 10;font-family: TIMES"><?php
+    	<h5 class="card-title">Available: <span id="avail" style="font-weight: 10;font-family: TIMES"><?php
     	if($count>0) echo $row2[3];
     	else 
     	echo 0; ?></span></h5>
@@ -85,13 +85,7 @@ $row2=mysqli_fetch_row($result2);
     <h5 class="card-title">Category: <span style="font-weight: 10;font-family: TIMES"><?php echo ucfirst($row[0]); ?></span></h5>
     <h5 class="card-title">SubCategory: <span style="font-weight: 10;font-family: TIMES"><?php echo ucfirst($subcat); ?></span></h5>
     </div>
-    <div class="col-sm-6">
-    	<h5 class="card-title">Available: <span id="avail" style="font-weight: 10;font-family: TIMES"><?php
-    	if($count>0) echo $row2[3];
-    	else 
-    	echo 0; ?></span></h5>
-
-    </div>
+   
 </div>
     <p class="card-text">
       <form method="POST" action="insertstock.php?catid=<?php echo $catid?>&subcat=<?php echo $subcat?>&count=<?php echo $count?>&sign=2">

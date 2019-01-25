@@ -65,6 +65,7 @@ include "navbar.php";
 <div class="form-group">
 	<label>Category</label>
 	<select class="form-control" name='catid'>
+    <option disabled selected>Select Category</option>
 	<?php
 	if(mysqli_num_rows($result)>0){
 		while($row= mysqli_fetch_row($result)){
