@@ -51,15 +51,15 @@ $(document).ready(function(){
 		<div class="container mt-5">
       
         <div class="row">
-        <div class="col-sm-3"> 
+        <div class="col-lg-3 col-xs-3 col-md-12"> 
      <h1 style="font-family:Century">Stock Out Transactions</h1>
-     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control-sm " id="myInput" type="search" placeholder="Search in this table" aria-label="Search">
+     <form class="form-inline my-2 my-lg-0" action="javascript:void(0);">
+      <input class="form-control " id="myInput" type="search" placeholder="Search in this table" aria-label="Search">
       
     </form><br>
   
 </div>
-<div class="col-sm-3">
+<div class="col-lg-6 col-xs-6 col-md-12 form-inline">
                      <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date" />  
                 
                 
@@ -69,9 +69,9 @@ $(document).ready(function(){
                      <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info" />  
                 
 </div>
-<div class="col-sm-6">
-  <a href="transaction.php?cat=<?php echo $catid ?> &subcat=<?php echo $subname ?>"><button type="button" class="btn btn-success" style="float: right;" title="click to view stock out">Stock In</button></a><br><br>
-  <button type="button" onclick="down()" class="btn btn-success" style="float: right;" title="click to view stock out">download pdf</button>
+<div class="col-lg-3 col-xs-3 col-md-12 form-inline">
+  <a href="transaction.php?cat=<?php echo $catid ?> &subcat=<?php echo $subname ?>"><button type="button" class="btn btn-success" style="" title="click to view stock out">Stock In</button></a>
+  <button type="button" onclick="down()" class="btn btn-success ml-1" style="" title="click to view stock out">download pdf</button>
 
 </div>
 		

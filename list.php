@@ -36,10 +36,15 @@ $(document).ready(function(){
 <body>
 	<div class="container mt-5">
 
-<form class="form-inline my-2 my-lg-0">
-      <input class="form-control-sm " id="myInput" type="search" placeholder="Search in this table" aria-label="Search">
+<div class="row">
+  <div class="col-sm-6">
+<form class="form-inline my-2 my-lg-0" action="javascript:void(0);">
+      <input class="form-control " id="myInput" type="search" placeholder="Search in this table" aria-label="Search">
       
-    </form><br>
+    </form><br></div>
+    <div class="col-sm-6">
+    <button type="button" onclick="down()" class="btn btn-success ml-1" style="" title="click to view stock out">download pdf</button>
+</div></div>
 <table class="table table-hover">
   <thead>
     <tr>
