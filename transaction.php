@@ -12,8 +12,6 @@ $sql3="SELECT name FROM subcategory WHERE catid='$catid' AND user='$user'";
 $result3=mysqli_query($conn,$sql3);
 $sql4="SELECT * FROM category ";
 $result4=mysqli_query($conn,$sql4);
-
-
  
 ?>
 <html>
@@ -49,29 +47,27 @@ $(document).ready(function(){
     <div class="container mt-5">
       
         <div class="row">
-        <div class="col-lg-3 col-xs-3 col-md-12"> 
+        <div class="col-xs-3 col-lg-3 col-md-12"> 
      <h1 style="font-family:Century">Stock In Transactions</h1>
      <form class="form-inline my-2 my-lg-0" action="javascript:void(0);">
       <div class="input-group form-group">
             
-            <input class="form-control " id="myInput" type="search" placeholder="Search in this table" aria-label="Search">
+            <input class="form-control" id="myInput" type="search" placeholder="Search in this table" aria-label="Search">
      
             
           </div>
       
     </form>
-   </div> <div class="col-lg-6 col-xs-6 col-md-12 form-inline">
-                     <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date" />  
+   </div> <div class="col-xs-6 col-lg-6 col-md-12 form-inline">
+                     <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date">
+                     <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date">  
                 
                 
-                     <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" />  
+                     <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info"> 
                 
-                
-                     <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info" />  
-                
-</div><div class=" col-lg-3 col-xs-3 col-md-12 form-inline">
-  <a href="transout.php?cat=<?php echo $catid ?> &subcat=<?php echo $subname ?>"><button type="button" class="btn btn-success" style="" title="click to view stock out">Stock Out</button></a><br>
-<button type="button" onclick="down()" class="btn btn-success ml-1"  title="click to view stock out">download pdf</button>
+</div><div class="col-xs-3 col-lg-3 col-md-12 form-inline" >
+  <a href="transout.php?cat=<?php echo $catid ?> &subcat=<?php echo $subname ?>"><button type="button" class="btn btn-success" style="float: right;" title="click to view stock out">Stock Out</button></a>
+<button type="button" onclick="down()" class="btn btn-success ml-1  " title="click to view stock out">download pdf</button>
 </div>
     <br>
       <table class="table table-hover border mt-4" style="" >
@@ -89,7 +85,6 @@ $(document).ready(function(){
     </thead>
     <tbody id="myTable""><tr>
     <?php
-
      if(mysqli_num_rows($result1)==0)
         { if (mysqli_num_rows($result2)==0){
           while ($row4=mysqli_fetch_array($result4)) 
@@ -102,8 +97,8 @@ $result6=mysqli_query($conn,$sql6);
             
           
  
-        ?>
-        <td id="catid"><?php echo $row4[0];?></td>
+        ?><div id="catid"></div><div id="subcat"></div>
+        <td ><?php echo $row4[0];?></td>
         <td><?php echo $row4[1];?></td>
         <td><?php echo $row6[0];?></td>
          <td><?php if($row5[2]==0){echo "";} else echo $row5[3]/$row5[2];?></td>

@@ -117,9 +117,7 @@ margin-left: 4px;
 						</div>
 						<input type="password" name="pword" class="form-control" placeholder="password">
 					</div>
-					<div class="row align-items-center remember">
-						<input type="checkbox">Remember Me
-					</div>
+					
 					<div class="form-group">
 						<input type="submit" value="Login" class="btn float-right login_btn">
 					</div>
