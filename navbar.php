@@ -45,6 +45,8 @@ if ($conn->connect_error) {
         <a class="nav-link" href="list.php">Category List</a></li>
  <li class="nav-item active">
         <a class="nav-link" href="user.php">User List</a></li>
+<li class="nav-item active">
+        <a class="nav-link" href="adduser.php">Add User</a></li>
 
 </ul>      
     <form class="form-inline my-2 my-lg-0">
